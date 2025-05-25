@@ -1,0 +1,16 @@
+[project]
+name = "scann"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "scikit-learn>=1.6.1",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.2.0",
+    "pdbpp>=0.11.6",
+    "pytest>=8.3.5",
+]
