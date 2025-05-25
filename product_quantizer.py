@@ -15,7 +15,7 @@ class ProductQuantizer:
 
         for i in range(self.n_subvectors):
             subspace = self._create_subspace(data, i)
-            kmeans = KMeans(n_clusters=self.n_centroids, random_state=2137)
+            kmeans = KMeans(n_clusters=self.n_centroids)
             kmeans.fit(subspace)
             self.codebooks.append(kmeans.cluster_centers_)
     
@@ -35,12 +35,10 @@ class ProductQuantizer:
         # not a distance per subvector
         distances = np.zeros(codes.shape[0])
         for i in range(self.n_subvectors):
-            breakpoint()
             q_sub = query[i * self.subvector_dim:(i + 1) * self.subvector_dim]
             centroids = self.codebooks[i]
             dists = np.linalg.norm(centroids - q_sub, axis=1)
             distances += dists[codes[:, i]]
-        breakpoint()
         return distances
 
     def _create_subspace(self, data, i):
